@@ -15,10 +15,9 @@ Este microservicio permite a partir de entradas en lenguaje natural y puede inte
 
 ### Flujo General
 
-**1. Entrada del Usuario**: Se reciben consultas en lenguaje natural a través de la API REST.
-**2. Generación de Consultas SQL**: El modelo **TinyLlama** genera la consulta SQL correspondiente a partir de la consulta en lenguaje natural.
-**3. Ejecución de la Consulta**: La consulta SQL es ejecutada en la base de datos **Impala**.
-**4. Respuesta al Usuario**: Los resultados de la consulta se devuelven en formato amigable para el usuario, junto con la consulta SQL generada.
+- **1. Entrada del Usuario**: Se reciben consultas en lenguaje natural a través de la API REST.
+- **2. Generación de Consultas**: El modelo **TinyLlama** genera la respuesta correspondiente a partir de la consulta en lenguaje natural.
+- **3. Respuesta al Usuario**: Los resultados de la consulta se devuelven en formato amigable para el usuario.
 
 # Instalación
 
@@ -88,6 +87,7 @@ docker run --name nombre_contenedor -d -p 8080:80 nombre_imagen
 ### Configuración de la API del Microservicio FastAPI y USO
 
 Asegúrate de que el microservicio FastAPI esté corriendo antes de consumir el API:
+![chatbot](img/postman.png)
 
 ```
 http://127.0.0.1:8000/ai/chatbot/tinyllama
