@@ -2,18 +2,16 @@
 
 Bienvenido al **Microservicio TinyLlama**, un servicio RESTful basado en **FastAPI** que expone un modelo de lenguaje natural optimizado llamado **TinyLlama**. Este modelo está diseñado para ofrecer consultas SQL dinámicas utilizando lenguaje natural, con un bajo consumo de recursos de hardware gracias a su integración con **Docker**.
 
-Este microservicio genera consultas SQL a partir de entradas en lenguaje natural y puede interactuar con bases de datos, como Impala, para recuperar información.
+Este microservicio permite a partir de entradas en lenguaje natural y puede interactuar, para recuperar información.
 
 # Características
 
-- **Consultas SQL en Lenguaje Natural**: Convierte consultas en lenguaje natural a SQL ejecutable.
 - **Optimización de Recursos**: Utiliza Docker para ejecutar el modelo **TinyLlama** de manera eficiente en términos de recursos de hardware.
-- **Integración con Bases de Datos**: Conecta con **Impala** para ejecutar las consultas generadas.
 - **Microservicio con FastAPI**: Exposición de la funcionalidad como un microservicio RESTful, fácil de integrar con otros sistemas.
   
 ## Arquitectura
 
-![chat-lz](docs/chat_lz.png)
+![chatbot](img/Tinyllama.png)
 
 ### Flujo General
 
@@ -35,10 +33,10 @@ https://github.com/lriveraBanco/chat-with-lz.git
 Seleccionar el proyecto : Moverse al directorio principal
 
 ```
-cd chat-with-lz
+cd microservices_ia
 ```
 
-### Crear entorno virtual
+### Crear entorno virtual si tienes recursos CPU o GPU para ejecutar este proyecto
 
 ```
 python3 -m venv venv
@@ -64,6 +62,13 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+### ejecutar microservicio de manera local
+
+```
+uvicorn main:app --host 0.0.0.0 --port 80 --reload
+```
+
+## Dockerizado
 ### Configurar Docker (si usas Docker para TinyLlama)
 
 Si prefieres ejecutar el modelo en Docker, sigue estos pasos:
@@ -71,72 +76,54 @@ Si prefieres ejecutar el modelo en Docker, sigue estos pasos:
 1. **Construir la Imagen Docker**:
 
 ```
-pip install -r requirements.txt
+docker build -t nombre_imagen .
 ```
 
 2. **Ejecutar el Contenedor Docker**:
 
 ```
-pip install -r requirements.txt
+docker run --name nombre_contenedor -d -p 8080:80 nombre_imagen
 ```
 
-3. **Verifica que el contenedor está funcionando correctamente ejecutando**:
+### Configuración de la API del Microservicio FastAPI y USO
+
+Asegúrate de que el microservicio FastAPI esté corriendo antes de consumir el API:
 
 ```
-pip install -r requirements.txt
+http://127.0.0.1:8000/ai/chatbot/tinyllama
 ```
 
-### Ejecutar el Microservicio FastAPI
 
-Para iniciar el microservicio, ejecuta:
-
-```
-pip install -r requirements.txt
-```
-
-### Configuración de la API del Microservicio FastAPI
-
-Asegúrate de que el microservicio FastAPI esté corriendo antes de iniciar la aplicación Streamlit. Puedes configurarlo en tu archivo .env o directamente en el código de Streamlit con la URL del microservicio:
-
-```
-FASTAPI_URL=http://127.0.0.1:8000/query
-```
-
-# USO
-
-### 1. Ejecutar la Aplicación de Streamlit
-
-Inicia la aplicación con el siguiente comando:
-
-```
-streamlit run app.py
-```
 
 ### 2. Interactuar con el Chatbot
 
 Escribe consultas en lenguaje natural, como:
 
-- **"Muestra los registros más recientes para la API X."**
-- **"¿Cuál es el esquema de la tabla Y?"**
-- **"Obtén el promedio de usuarios por API en los últimos tres meses."**
+- **"Que es LLMs"**
+- **"¿que es tinyllama?"**
+- **"Capital de Colombia"**
 
-El chatbot generará consultas SQL, las ejecutará y mostrará los resultados.
-Use the sidebar to initialize the connection to the proceso_apis database.
+El chatbot generará respuestas, a tus multiples preguntas.
+
 
 **Estructura básica del proyecto:**
 
 ```plaintext
 tinyllama-microservicio/
 │
-├── docs/
-│   ├── microservice_architecture.png
-├── src/
-│   ├── main.py        # Archivo principal con FastAPI
-│   ├── model.py       # Lógica del modelo TinyLlama
-│   ├── utils.py       # Funciones auxiliares
+├── api_v1/
+│   ├── logic
+|       ├──tinyllama.py
+│   ├── routes
+|       ├──tinyllama.py
+|   ├──api.py
+|   ├──events.py
+├── img/
+│   ├── Tinyllama.png            
 ├── Dockerfile         # Para la construcción del contenedor Docker
+├── docs.py
 ├── requirements.txt   # Dependencias del proyecto
-├── .env               # Variables de entorno
+├── main.py            
 └── README.md          # Este archivo
 ```
 
@@ -145,8 +132,8 @@ tinyllama-microservicio/
 **FastAPI:** Framework para crear la API RESTful.
 **Uvicorn:** Servidor ASGI para ejecutar FastAPI.
 **Docker:** Contenedor para ejecutar el modelo TinyLlama de manera eficiente.
-**TinyLlama:** El modelo de lenguaje natural que genera consultas SQL.
-**Impala:** Base de datos para ejecutar las consultas generadas.
+**TinyLlama:** El modelo de lenguaje natural que genera respuesta a tus consultas.
+
 
 ## Contribuciones
 
