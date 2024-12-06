@@ -24,7 +24,7 @@ Este microservicio permite a partir de entradas en lenguaje natural y puede inte
 ### Clonar el proyecto
 
 ```
-https://github.com/lriveraBanco/chat-with-lz.git
+https://github.com/LeoR22/microservices_ia.git
 ```
 
 ### Configuración el proyecto
@@ -151,7 +151,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 
 ## Contacto
 
-Leandro Rivera: <lrivera@bancolombia.com.co>
+Leandro Rivera: <leo.232rivera@gmail.com>
 
 ### ¡Feliz Codificación! 🚀
 
